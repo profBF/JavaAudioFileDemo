@@ -10,16 +10,14 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class AudioFile {
-	private File file;
 	private String filename;
 	AudioInputStream audioStream = null;
 	Clip clip;
 
 	public AudioFile(String filename) {  
 		this.filename = filename;
-		file = new File(filename);
 		try {
-			audioStream = AudioSystem.getAudioInputStream(file);
+			audioStream = AudioSystem.getAudioInputStream(new File(filename));
 			clip = AudioSystem.getClip();
 			clip.open(audioStream);
 		} catch (UnsupportedAudioFileException e) {
